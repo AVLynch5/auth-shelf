@@ -11,7 +11,7 @@ const router = express.Router();
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  res.send('this is req.user',req.user);
+  res.send('this is req.user', req.user);
 });
 
 // Handles POST request with new user data
