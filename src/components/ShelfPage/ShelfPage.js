@@ -8,7 +8,13 @@ function ShelfPage() {
   // set selector
   const { setShelfItems } = useSelector(store => store);
 // do a dispatch
-  return (
+const dispatch = useDispatch();
+
+useEffect( () => {
+  dispatch({type: 'FETCH_SHELF'});
+}, [dispatch]);
+
+return (
     <div className="container">
       <h2>Shelf</h2>
       <p>All of the available items can be seen here.</p>
