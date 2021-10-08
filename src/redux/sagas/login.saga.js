@@ -14,7 +14,7 @@ function* loginUser(action) {
 
     // send the action.payload as the body
     // the config includes credentials which
-    // allow the server session to recognize the user
+    // allow the server session to recognize the us: imper
     yield axios.post('/api/user/login', action.payload, config);
 
     // after the user has logged in
