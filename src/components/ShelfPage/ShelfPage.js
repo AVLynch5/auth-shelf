@@ -8,8 +8,20 @@ function ShelfPage() {
   // set selector
   const reduxStore = useSelector(store => store);
   const { setShelf } = reduxStore;
-// do a dispatch
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  //state var to hold newItem details
+  const [newItem, setNewItem] = useState({ description: '', image_url: '' });
+
+  //function handePOSTItem
+  const handlePOSTItem = (event) => {
+    event.preventDefault();
+    dispatch({type: 'ADD_NEW_ITEM', payload: newItem});
+    setNewItem({ description: '', image_url: '' });
+  }
+
+  // do a dispatch
+
 
 useEffect( () => {
   dispatch({type: 'FETCH_SHELF'});
@@ -26,7 +38,13 @@ return (
         {setShelf.map((item, i) => (<ShelfItem key={item.id} item={item} />))}
       </ul>
       {/* build 'Add' for POST route */}
-    </div>
+      <h3>Add a new Item: </h3>
+      <form onSubmit={handlePOSTItem}>
+        <textarea required placeholder="Item Description" value={newItem.description} type="text" onChange={(event) => setNewItem({ ...newItem, description: event.target.value })} />
+        <input required placeholder="Item Image" value={newItem.image_url} type="url" onChange={(event) => setNewItem({ ...newItem, image_url: event.target.value })} />
+        <button type="submit">submit</button>
+      </form>
+    </div >
   );
 }
 
