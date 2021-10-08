@@ -1,4 +1,6 @@
-import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux';
+import React from 'react';
+import { useState } from 'react';
 
 function  ShelfItem ({item}) {
     const dispatch = useDispatch()
@@ -8,9 +10,14 @@ function  ShelfItem ({item}) {
     }
 
     const handleEdit = () => {
-      dispatch({ type: 'EDIT_AN_ITEM', payload: item.id })
+      console.log('in edit')
+      setChecked(!checked);
+      //dispatch({ type: 'EDIT_AN_ITEM', payload: item.id })
     }
 
+    //false by default
+    const [checked, setChecked] = useState(false);
+ 
     return(
         <li>Item: {item.description} 
         <br/>
@@ -19,7 +26,10 @@ function  ShelfItem ({item}) {
         <br></br>
         <button onClick={handleDelete}>Delete</button>
         <button onClick={handleEdit}>Edit</button>
-    </li>
+        {checked ? <textarea placeholder="Edit description"/> : ''}
+        {checked ? <input placeholder="Edit Image"/> : ''}
+        {checked ? <button>Submit changes</button> : ''}
+        </li>
        
     )
 }
