@@ -32,7 +32,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   })
 });
-
 /**
  * Delete an item if it's something the logged in user added
  */
