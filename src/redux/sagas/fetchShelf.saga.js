@@ -5,9 +5,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchShelf() {
     try{
-    const response = yield axios.get('/api/shelf', config);
-    yield put({ type: 'FETCH_SHELF', payload: response.data });
-} catch (error) {
+    const response = yield axios.get('/api/shelf');
+    console.log('this is FETCHSHELF response', response.data);
+    yield put({ type: 'SET_SHELF', payload: response.data });
+}   catch (error) {
     console.log('Shelf get request failed', error);
 }
   }

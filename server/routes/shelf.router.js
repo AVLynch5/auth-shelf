@@ -8,7 +8,7 @@ const { rejectUnauthenticated, } = require('../modules/authentication-middleware
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('req.user:', req.user);
-  pool.query(`SELECT * FROM "item"`)
+  pool.query(`SELECT * FROM "item";`)
   .then((results) => res.send(results.rows))
   .catch((error) => {
     console.log('Error making GET request:', error);
