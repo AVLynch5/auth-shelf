@@ -19,7 +19,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * Add an item for the logged in user to the shelf
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   const user = req.user.id;
   const payload = req.body;
@@ -36,8 +36,17 @@ router.post('/', (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // endpoint functionality
+  const itemID = req.params.id;
+  const queryText = `DELETE FROM "item" WHERE "id" = $1`;
+  pool.query(queryText, [itemID])
+  .then((response) => {
+    res.sendStatus(201);
+  }).catch((error) => {
+    console.log('Error deleting item with ID', itemID);
+    res.sendStatus(500);
+  })
 });
 
 /**
