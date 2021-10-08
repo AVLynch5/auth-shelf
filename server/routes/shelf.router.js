@@ -14,6 +14,16 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
+  const user = req.user.id;
+  const payload = req.body;
+  const queryText = `INSERT INTO "item" ("description", "image_url", "user_id") VALUES ($1, $2, $3);`;
+  pool.query(queryText, [payload.description, payload.image_url, user])
+  .then((response) => {
+    res.sendStatus(201);
+  }).catch((error) => {
+    console.log('ERROR POSTING TO DB', error);
+    res.sendStatus(500);
+  })
 });
 
 /**
