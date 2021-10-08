@@ -3,7 +3,11 @@
 function  ShelfItem ({item}) {
 
     return(
-        <li>Item: {item.description}, User Id: {item.user_id}</li>
+        <li>Item: {item.description} 
+        <br/>
+        <br/>
+        Photo: <img src={item.image_url} />
+    </li>
     )
 }
 
