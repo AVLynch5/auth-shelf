@@ -6,7 +6,8 @@ import ShelfItem from './ShelfItem';
 
 function ShelfPage() {
   // set selector
-  const { setShelfItems } = useSelector(store => store);
+  const reduxStore = useSelector(store => store);
+  const { setShelf } = reduxStore;
 // do a dispatch
 const dispatch = useDispatch();
 
@@ -19,8 +20,10 @@ return (
       <h2>Shelf</h2>
       <p>All of the available items can be seen here.</p>
       {/* map over items from GET */}
+      {/* <p>{JSON.stringify(setShelf)}</p> */}
       <ul>
-        {setShelfItems.map((item, i) => (<ShelfItem key={i} item={item} />))}
+        
+        {setShelf.map((item, i) => (<ShelfItem key={item.id} item={item} />))}
       </ul>
       {/* build 'Add' for POST route */}
     </div>

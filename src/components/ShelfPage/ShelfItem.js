@@ -3,10 +3,7 @@
 function  ShelfItem ({item}) {
 
     return(
-        <>
-        console.log('some item');
-        <li>{item}</li>
-        </>
+        <li>Item: {item.description}, User Id: {item.user_id}</li>
     )
 }
 

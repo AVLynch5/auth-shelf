@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 const setShelfItems = (state = [], action) => {
     if (action.type === 'SET_SHELF') {
