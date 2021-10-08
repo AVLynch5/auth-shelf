@@ -1,19 +1,19 @@
-import {put, takeLatest} from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios';
 
 
 function* addItem(action) {
-    try{
+    try {
         yield axios.post('/api/shelf', action.payload)
-        yield put({type: 'FETCH_SHELF'})
+        yield put({ type: 'FETCH_SHELF' })
 
-    }catch(error){
-      console.log('Error adding an item', error);
+    } catch (error) {
+        console.log('Error adding an item', error);
     }
 }
 
-function* addItemSaga(){
-    yield takeLatest('ADD_NEW_ITEM',addItem)
+function* addItemSaga() {
+    yield takeLatest('ADD_NEW_ITEM', addItem)
 }
 
 export default addItemSaga;
